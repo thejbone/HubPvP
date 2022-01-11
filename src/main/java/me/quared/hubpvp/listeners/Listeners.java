@@ -36,7 +36,7 @@ public class Listeners implements Listener {
         ItemMeta swordMeta = sword.getItemMeta();
 
         try {
-            swordMeta.spigot().setUnbreakable(true);
+            swordMeta.setUnbreakable(true);
         } catch (NoSuchMethodError ignored) {
             try {
                 ItemMeta.class.getMethod("setUnbreakable", Boolean.class).invoke(swordMeta, true);
@@ -95,16 +95,16 @@ public class Listeners implements Listener {
                     killer.sendMessage(plugin.format(plugin.getConfig().getString("health-gained-message")
                             .replace("%extra%", plugin.getConfig().getString("health-on-kill")).replace("%killed%", p.getDisplayName())));
                 }
-                p.setHealth(p.getMaxHealth());
-    
+//                p.setHealth(p.getMaxHealth());
+
                 this.pvp.remove(p);
                 this.pvpTask.remove(p);
                 this.pvpTask2.remove(p);
-                if (!plugin.getConfig().getBoolean("respawn-at-spawn"))
-                    p.teleport(p.getLocation().add(0.0D, 1.0D, 0.0D));
-                else
-                    p.teleport(p.getWorld().getSpawnLocation());
-    
+//                if (!plugin.getConfig().getBoolean("respawn-at-spawn"))
+//                    p.teleport(p.getLocation().add(0.0D, 1.0D, 0.0D));
+//                else
+//                    p.teleport(p.getWorld().getSpawnLocation());
+//
                 p.getInventory().setHeldItemSlot(0);
                 p.sendMessage(plugin.format(plugin.getConfig().getString("killed-message")).replace("%killer%", killer.getDisplayName()));
                 killer.sendMessage(
@@ -114,7 +114,7 @@ public class Listeners implements Listener {
                 p.getInventory().setLeggings(new ItemStack(Material.AIR));
                 p.getInventory().setBoots(new ItemStack(Material.AIR));
                 p.setMetadata("pvp", new FixedMetadataValue(HubPvP.getPlugin(), false));
-                e.setDeathMessage(null);
+//                e.setDeathMessage(null);
             }
         }
     }
